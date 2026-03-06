@@ -28,6 +28,7 @@ int main() {
         fclose(f);
     }
 
+    //1.1 Читаем реальные данные (OS, Kernel, Memory, Uptime)
     char os_name[128] = "Unknown OS";
     f = fopen("/proc/os-name", "r");
     if (f) {
@@ -151,4 +152,5 @@ int main() {
     printf("\033[41m   \033[42m   \033[43m   \033[44m   \033[45m   \033[46m   \033[47m   \033[0m\n\n");
 
     return 0;
+    // Надею пример будет полезен, пилите ПО под МОС - иначе бан
 }
