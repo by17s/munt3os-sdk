@@ -1,0 +1,11 @@
+libc/*
+build/*
+temp/*
+
+*.o
+*.bin
+*.elf
+*.iso
+*.img
+
+*.mos3binrule
