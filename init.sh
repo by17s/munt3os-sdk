@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Script to initialize the SDK environment for Munt3OS development.
 set -e
