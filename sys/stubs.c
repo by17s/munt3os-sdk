@@ -30,9 +30,21 @@ int ioctl(int fd, int request, void *arg) {
     return (int)__syscall(SYS_IOCTL, fd, request, arg);
 }
 
+int stat(const char *restrict pathname, struct stat *restrict statbuf) {
+    return (int)__syscall(SYS_STAT, pathname, statbuf, 0);
+}
+
+int fstat(int fd, struct stat *statbuf) {
+    return (int)__syscall(SYS_FSTAT, fd, statbuf, 0);
+}
+
 void _exit(int status) {
     __syscall(SYS_EXIT, status);
     while (1);
+}
+
+int readdir(int fd, struct dirent *dirp, uint32_t index) {
+    return (int)__syscall(SYS_READDIR, fd, dirp, index);
 }
 
 void *sbrk(intptr_t increment) {
@@ -45,4 +57,30 @@ void *sbrk(intptr_t increment) {
         current_brk = (void *)__syscall(SYS_BRK, (uintptr_t)current_brk + increment);
     }
     return prev_brk;
+}
+
+// === Access & Tasks === //
+
+int vexecve(const char* path, char **argv) {
+    return (int)__syscall(SYS_EXECVE, path, argv);
+}
+
+int chdir(const char* dir) {
+    return (int)__syscall(SYS_CHDIR, dir);
+}
+
+int setuid(uid_t uid) {
+    return (int)__syscall(SYS_SETUID, uid, 0, 0);
+}
+
+int setgid(gid_t gid) {
+    return (int)__syscall(SYS_SETGID, gid, 0, 0);
+}
+
+int chown(const char* path, uid_t uid, gid_t gid) {
+    return (int)__syscall(SYS_CHOWN, path, uid, gid);
+}
+
+int execve_module(const char* path, void* arg) {
+    return (int)__syscall(SYS_EXECVE_MODULE, path, arg);
 }

@@ -2,9 +2,7 @@
 .section .text
 _start:
     xorq %rbp, %rbp
-    movq $0, %rdi      # Опционально: заглушка argc
-    movq $0, %rsi      # Опционально: заглушка argv
-    andq $-16, %rsp    # Выравнивание стека по 16 байт
+    andq $-16, %rsp    
     call main
     movq %rax, %rdi
     call _exit
